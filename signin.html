@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>registration page</title>
+    <title>Student Sign In</title>
     <style>* {
     margin: 7px;
     padding: 0;
@@ -29,7 +29,6 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     width: 450px;
     height: 390px;
     /* margin: auto; */
@@ -42,7 +41,7 @@ h1 {
 form{
     background-color: white;
 }
-#rectangle h1{
+#rectangle p{
     font-size: 25px;
 }
 #box {
@@ -82,24 +81,28 @@ button {
 }
 #box a{
     background-color: white;
+}
+.error-message {
+    color: #dc3545;
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+    background-color: white;
 }</style>
 </head>
 <body><div id="geometry">
     <div id="rectangle">
-        <img style="height: 8rem;width: 8rem;" src="Designer.png" alt="logo">
-        <h1>Fedilety and truth</h1>
-        <p>Grow together</p>
+        <h1>welcome back</h1>
+        <p>Sign in to your account</p>
+        <p>Continue your journey</p>
     </div>
     <div id="box">
-    <h1>Students login</h1>
-    <form action="register.php" method="post">
-    <input type="text" name="name" placeholder="Name" required>
-    <br>
+    <h1>Student Sign In</h1>
+    <form action="signin.php" method="POST">
     <input type="email" name="email" placeholder="Email" required><br>
-    <input type="number" name="uid" placeholder="Uid" required><br>
     <input type="password" name="password" placeholder="Password" required><br>
-    <button type="submit">register</button>
-    <p>Already have an account ?<a href="signin.html">sign in</a></p>
+    <button type="submit">sign in</button>
+    <p>Don't have an account ?<a href="studentslogin.html">register</a></p>
     </form>
     </div>
     </div>

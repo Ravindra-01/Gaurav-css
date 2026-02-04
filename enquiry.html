@@ -67,7 +67,7 @@
 
 <div class="container">
     <h2>Enquiry Form</h2>
-    <form action="#" method="post">
+    <form action="enquiry.php" method="post">
         
         <label for="name">Parent / Student Name</label>
         <input type="text" id="name" name="name" required>
@@ -79,7 +79,8 @@
         <input type="tel" id="phone" name="phone" required>
 
         <label for="class">Class Applying For</label>
-        <select id="class" name="class" required>
+        <input type="text" name="class" placeholder="enter your class" required>
+        <!-- <select id="class" name="class" required>
             <option value="">-- Select Class --</option>
             <option>Nursery</option>
             <option>KG</option>
@@ -93,10 +94,10 @@
             <option>Class 8</option>
             <option>Class 9</option>
             <option>Class 10</option>
-        </select>
+        </select> -->
 
         <label for="message">Your Enquiry</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
+        <textarea id="message" name="message" rows="4" cols="80" required></textarea>
 
         <button type="submit">Submit Enquiry</button>
     </form>

@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$database = "cluny_convent_school";
+$database = "gaurav-css";
 
   $conn = mysqli_connect($host, $user, $password, $database);
 
