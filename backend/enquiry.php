@@ -10,10 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = "INSERT INTO enquiry(name,email, phone, class, message) VALUES ('$name', '$email', '$phone', '$class', '$message')";
     if (mysqli_query($conn, $sql)) {
-        header("Location: index.html?success=enquiry_submitted");
+        header("Location:../frontend/index.html?success=enquiry_submitted");
         exit;
     } else {
-        header("Location: index.html?error=enquiry_failed");
+        header("Location:../frontend/index.html?error=enquiry_failed");
         exit;
     }
 }   

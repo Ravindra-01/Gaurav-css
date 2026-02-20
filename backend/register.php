@@ -12,10 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO students(name,email, uid, password) VALUES ('$name', '$email', '$uid', '$hashed_password')";
 
     if (mysqli_query($conn, $sql)) {
-        header("Location: index.html?success=registered");
+        header("Location: ../frontend/index.html?success=registered");
         exit;
     } else {
-        header("Location: index.html?error=registration_failed");
+        header("Location: ../frontend/index.html?error=registration_failed");
         exit;
     }
 }   

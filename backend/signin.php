@@ -21,23 +21,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['name'] = $row['name'];
             
             // Redirect to dashboard or home page
-            header("Location: index.html?success=signin");
+            header("Location: ../frontend/index.html?success=signin");
             exit;
         } else {
             // Password is incorrect
-            header("Location: signin.html?error=invalid_credentials");
+            header("Location: ../frontend/signin.html?error=invalid_credentials");
             exit;
         }
     } else {
 
         // User not found
-        header("Location: signin.html?error=user_not_found");
+        header("Location: ../frontend/signin.html?error=user_not_found");
         exit;
     }
 }
 
 // If accessed directly without POST
-header("Location: signin.html");
+header("Location: ../frontend/signin.html");
 exit;
 ?>
 
