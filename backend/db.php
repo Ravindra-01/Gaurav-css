@@ -1,10 +1,19 @@
 <?php
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "gaurav-css";
+require __DIR__ . '/../vendor/autoload.php';
 
-  $conn = mysqli_connect($host, $user, $password, $database);
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
+
+$conn = mysqli_connect(
+    $_ENV['DB_HOST'],
+    $_ENV['DB_USER'],
+    $_ENV['DB_PASS'],
+    $_ENV['DB_NAME'],
+  (int) $_ENV['DB_PORT']
+);
+
 
 if (!$conn) {
     die("Database connection failed: " . mysqli_connect_error());
