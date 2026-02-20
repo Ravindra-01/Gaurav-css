@@ -1,0 +1,55 @@
+# ============================================================
+# docker-compose.yml
+# Services: PHP/Apache App + MySQL Database
+# ============================================================
+
+version: '3.9'
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gaurav_app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME:-gaurav_db}
+      - DB_USER=${DB_USER:-gaurav_user}
+      - DB_PASS=${DB_PASS:-secret}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - gaurav_net
+
+  db:
+    image: mysql:8.0
+    container_name: gaurav_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-gaurav_db}
+      MYSQL_USER: ${DB_USER:-gaurav_user}
+      MYSQL_PASSWORD: ${DB_PASS:-secret}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS:-rootsecret}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"         # remove in production
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - gaurav_net
+
+volumes:
+  db_data:
+
+networks:
+  gaurav_net:
+    driver: bridge
