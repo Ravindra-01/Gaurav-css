@@ -65,26 +65,19 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
 # ── Working directory ──────────────────────────────────────
 WORKDIR /var/www/html
 
-# ── Copy composer files first & install dependencies ───────
-# Copied before rest of code so Docker caches this layer
+# ── Install Composer dependencies ──────────────────────────
 COPY composer.json composer.lock* ./
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# ── Copy frontend files FLAT to web root ───────────────────
-COPY frontend/index.html        ./index.html
-COPY frontend/admission.html    ./admission.html
-COPY frontend/inquiry.html      ./inquiry.html
-COPY frontend/signin.html       ./signin.html
-COPY frontend/studentlogin.html ./studentlogin.html
-COPY frontend/style.css         ./style.css
-COPY frontend/style2.css        ./style2.css
-COPY frontend/images/           ./images/
+# ── Copy entire frontend folder contents to web root ───────
+# Copies everything inside frontend/ directly into /var/www/html/
+# so CSS, images, and HTML all work with their existing paths
+COPY frontend/ ./
 
 # ── Copy backend PHP files ─────────────────────────────────
 COPY backend/ ./backend/
 
-# ── Copy .env file (for local Docker use) ─────────────────
-# On Render, env vars are injected automatically - no .env needed
+# ── Copy .env (local Docker only) ─────────────────────────
 COPY .env* ./
 
 # ── Root .htaccess ─────────────────────────────────────────
